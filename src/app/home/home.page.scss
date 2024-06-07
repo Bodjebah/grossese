@@ -1,27 +1,176 @@
-#container {
-  text-align: center;
-
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
+.info-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  color: white;
+  font-weight: bold;
 }
 
-#container strong {
+.info-value {
+  font-size: 1rem;
+}
+
+
+.swiper {
+width: 100%;
+height: 100%;
+}
+
+/* Styles pour swiper-slide */
+.swiper-slide {    
+display: flex;
+flex-direction: column;
+overflow-y: auto;
+overflow-x: hidden;
+background: linear-gradient(to bottom, rgb(197 15 15 / 75%), rgb(179, 177, 173));
+}
+
+/* Styles spécifiques pour info-section et ses enfants */
+.info-section {
+display: flex;
+justify-content: space-between;
+padding: 1rem;
+margin-top: 3.5rem;
+}
+
+.image-section
+  {
+    display: flex;
+    justify-content: center;
+  }
+
+ div.image {
+  border: 4px solid gainsboro;
+  display: flex;
+  width: 80%;
+  box-shadow: #f4f5f8 -6px -9px 20px 0px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+  transition: all 5s ease-in-out;
+  animation: animate 5s ease-in-out infinite;
+  transition: all 1s ease-in-out;
+  img{
+    display: flex;
+    justify-content: normal;
+    align-items: center;
+    transition: all 5s ease-in-out;
+    animation: animate 5s ease-in-out infinite;
+    width: fit-content;
+    border-radius: 50%;
+    transition: all 1s ease-in-out;
+  }
+}
+
+@keyframes animate{
+  0% {
+    border-radius: 55% 45% 40% 60%/55% 40% 60% 45%;
+  }
+  50% {
+    border-radius: 50% 55% 60% 45%/50% 55% 45% 55%;
+  }
+  100% {
+    border-radius: 55% 45% 40% 60%/55% 40% 60% 45%;
+  }
+}
+
+.info-section ion-card {
+margin: -38px 1px 2px 2px;
+padding: 20px;
+color: white;
+border-radius: 5px;
+font-weight: 100;
+background: none;
+filter: contrast(1.2);
+width: 105px;
+height: 110px;
+}
+
+.info-section ion-card p {
+font-size: 22px;
+margin-top: -5px;
+font-family: serif;
+font-weight: 500;
+}
+
+
+
+/* Styles pour la section des semaines de grossesse */
+.weeks-section {
+  gap: 100px;
+  margin: 15px;
+  font-weight: 800;
   font-size: 20px;
-  line-height: 26px;
+  font-weight: 600;
+  width: 100%;
+  padding: 0px 25px 0 10px;
+  flex: none;
+  display: flex;
+  justify-content: space-between;
+  overflow-x: auto;
+  scrollbar-width: none;
 }
 
-#container p {
-  font-size: 16px;
-  line-height: 22px;
-
-  color: #8c8c8c;
-
-  margin: 0;
+.week-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.95rem;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
 }
 
-#container a {
-  text-decoration: none;
+button {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    text-align: center;
+    display: flex;
+    background: transparent;
+    z-index: 1;
+    transition: border 0.4s ease-in-out;
+    border: 3px solid orange;
+    cursor: pointer;
+    justify-content: center;
+    text-align: center;
+    background-color: transparent;
+    align-items: center;
+    font-size: 25px;
+    font-weight: 800;
 }
+.couleur{
+border: 90px solid #ffb106;
+border-top-left-radius: 30px;
+border-top-right-radius: 30px;
+margin-top: 20px;
+margin-left: -5px; 
+margin-right: -5px; 
+background-color: #ffb20b;
+color: white;
+font-weight: bold;
+
+.one{
+  justify-content: space-between;
+    display: flex;
+    margin: -75px;
+}
+}
+ion-progress-bar{
+    margin-top: 80px;
+    height: 10px;
+    border-radius: 10px;
+
+}
+
+.two{
+  display: flex;
+  justify-content: space-between;
+  margin: 0px -80px 0px -80px;
+  gap: 45px;
+}
+
+
+
+
+
+

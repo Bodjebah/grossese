@@ -1,20 +1,128 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<!-- Swiper -->
+<div class="swiper mySwiper">
+  <div class="swiper-wrapper">
+    <div class="swiper-slide" *ngFor="let article of Article">
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+      <!-- Section pour afficher les détails de l'article sélectionné -->
+      <div *ngIf="selectedArticle === article; else defaultTemplate">
+        <div class="info-section">
+          <ion-card class="info-item">
+            <p class="info-value">{{selectedArticle.poids}} g</p>
+            <p class="info-label">Poids</p>
+          </ion-card>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+          <ion-card class="info-item">
+            <p class="info-value">{{selectedArticle.taille}} cm</p>
+            <p class="info-label">Tailles</p>
+          </ion-card>
+        </div>
+
+        <div class="image-section">
+          <div class="image">
+            <img [src]="selectedArticle.images[0]">
+          </div>
+        </div>
+
+        <div class="weeks-section">
+          <div *ngFor="let article of Article;">
+            <div class="week-item">
+              <button (click)="selectArticle(article)">
+                {{article.semaine}}
+              </button>
+              {{article.nbreSemaine}}
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top: -40px;">
+          <div class="couleur">
+            <div class="one">
+              <h5 style="display: block; font-weight: 100; margin-bottom: 8px; line-height: 20px; font-size: 16px; letter-spacing: 0px;">
+                Date de début {{selectedArticle.dateDebut}}
+              </h5>
+              <p style="display: block; font-weight: 100; margin-bottom: 8px; line-height: 20px; font-size: 16px; letter-spacing: 0px;">
+                {{selectedArticle.trimestre}} trimestre
+              </p>
+            </div>
+
+            <ion-progress-bar color="light" [value]="progress"></ion-progress-bar>
+
+            <div class="two">
+              <h5 style="display: block; font-weight: 100; margin-bottom: 8px; line-height: 20px; font-size: 16px; letter-spacing: 0px;">
+                Date de l'accouchement prévue le {{selectedArticle.dateFin}}
+              </h5>
+              <h5 style="display: block; font-weight: 100; margin-bottom: 8px; line-height: 20px; font-size: 16px; letter-spacing: 0px;">
+                {{selectedArticle.dateFin}}
+              </h5>
+            </div>
+
+            <h1 class="two" style="padding: 7px; font-weight: 100; margin: 20px -80px 20px -80px;">Le bebe</h1>
+            <p class="two" style="padding: 7px; font-weight: 100;">
+              {{selectedArticle.envent}}.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Template par défaut -->
+      <ng-template #defaultTemplate>
+        <div class="info-section">
+          <ion-card class="info-item">
+            <p class="info-value">{{article.poids}} g</p>
+            <p class="info-label">Poids</p>
+          </ion-card>
+          <ion-card class="info-item">
+            <p class="info-value">{{article.taille}} cm</p>
+            <p class="info-label">Tailles</p>
+          </ion-card>
+        </div>
+
+        <div class="image-section">
+          <div class="image">
+            <img [src]="article.images[0]">
+          </div>
+        </div>
+
+        <div class="weeks-section">
+          <div *ngFor="let article of Article;">
+            <div class="week-item">
+              <button (click)="selectArticle(article)">
+                {{article.semaine}}
+              </button>
+              {{article.nbreSemaine}}
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top: -40px;">
+          <div class="couleur">
+            <div class="one">
+              <h5 style="display: block; font-weight: 100; margin-bottom: 8px; line-height: 20px; font-size: 16px; letter-spacing: 0px;">
+                Date de début {{article.dateDebut}}
+              </h5>
+              <p style="display: block; font-weight: 100; margin-bottom: 8px; line-height: 20px; font-size: 16px; letter-spacing: 0px;">
+                {{article.trimestre}} trimestre
+              </p>
+            </div>
+
+            <ion-progress-bar color="light" [value]="progress"></ion-progress-bar>
+
+            <div class="two">
+              <h5 style="display: block; font-weight: 100; margin-bottom: 8px; line-height: 20px; font-size: 16px; letter-spacing: 0px;">
+                Date de l'accouchement prévue le {{article.dateFin}}
+              </h5>
+              <h5 style="display: block; font-weight: 100; margin-bottom: 8px; line-height: 20px; font-size: 16px; letter-spacing: 0px;">
+                {{article.dateFin}}
+              </h5>
+            </div>
+
+            <h1 class="two" style="padding: 7px; font-weight: 100; margin: 20px -80px 20px -80px;">Le bebe</h1>
+            <p class="two" style="padding: 7px; font-weight: 100;">
+              {{article.envent}}.
+            </p>
+          </div>
+        </div>
+      </ng-template>
+    </div>
   </div>
-</ion-content>
+</div>
