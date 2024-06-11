@@ -1,35 +1,47 @@
 <!-- Swiper -->
 <div class="swiper mySwiper">
   <div class="swiper-wrapper">
-    <div class="swiper-slide" *ngFor="let article of Article">
-
-      <!-- Section pour afficher les détails de l'article sélectionné -->
-      <div *ngIf="selectedArticle === article; else defaultTemplate">
+    <div class="swiper-slide">
         <div class="info-section">
           <ion-card class="info-item">
-            <p class="info-value">{{selectedArticle.poids}} g</p>
+            <p class="info-value">{{selectedArticle?.poids}} g</p>
             <p class="info-label">Poids</p>
           </ion-card>
-
           <ion-card class="info-item">
-            <p class="info-value">{{selectedArticle.taille}} cm</p>
+            <p class="info-value">{{selectedArticle?.taille}} cm</p>
             <p class="info-label">Tailles</p>
           </ion-card>
         </div>
 
-        <div class="image-section">
+        <div class="image-section" *ngIf="dateSelectionnee">
           <div class="image">
-            <img [src]="selectedArticle.images[0]">
+            <img [src]="selectedArticle?.images">
           </div>
         </div>
 
+        <div class="image-section" *ngIf="!dateSelectionnee">
+          <div class="image">
+              <div class="text">
+                <h2 for="startDate"> Choisissez votre date de debut de grossesse</h2>
+                <input type="date" id="startDate" [(ngModel)]="startDate" (change)="onDateSelected()"  />
+              </div>
+          </div>
+        </div>
+
+
+
         <div class="weeks-section">
-          <div *ngFor="let article of Article;">
+          <div *ngFor="let week of weeks;">
             <div class="week-item">
-              <button (click)="selectArticle(article)">
-                {{article.semaine}}
+              <button #weekButton [ngClass]="{
+                'past-week': week < currentWeek, 
+                'current-week': week === currentWeek, 
+                'future-week': week > currentWeek, 
+                'selected': selectedWeek === week}" 
+                (click)="selectWeek(week)">
+                {{week}}
               </button>
-              {{article.nbreSemaine}}
+              semaine
             </div>
           </div>
         </div>
@@ -38,10 +50,10 @@
           <div class="couleur">
             <div class="one">
               <h5 style="display: block; font-weight: 100; margin-bottom: 8px; line-height: 20px; font-size: 16px; letter-spacing: 0px;">
-                Date de début {{selectedArticle.dateDebut}}
+                Date de début {{startDate}}
               </h5>
               <p style="display: block; font-weight: 100; margin-bottom: 8px; line-height: 20px; font-size: 16px; letter-spacing: 0px;">
-                {{selectedArticle.trimestre}} trimestre
+                {{selectedArticle?.trimestre}} trimestre
               </p>
             </div>
 
@@ -49,80 +61,16 @@
 
             <div class="two">
               <h5 style="display: block; font-weight: 100; margin-bottom: 8px; line-height: 20px; font-size: 16px; letter-spacing: 0px;">
-                Date de l'accouchement prévue le {{selectedArticle.dateFin}}
-              </h5>
-              <h5 style="display: block; font-weight: 100; margin-bottom: 8px; line-height: 20px; font-size: 16px; letter-spacing: 0px;">
-                {{selectedArticle.dateFin}}
+                Date de l'accouchement prévue le {{endDate}}
               </h5>
             </div>
 
             <h1 class="two" style="padding: 7px; font-weight: 100; margin: 20px -80px 20px -80px;">Le bebe</h1>
             <p class="two" style="padding: 7px; font-weight: 100;">
-              {{selectedArticle.envent}}.
+              {{selectedArticle?.envent}}.
             </p>
           </div>
         </div>
-      </div>
-
-      <!-- Template par défaut -->
-      <ng-template #defaultTemplate>
-        <div class="info-section">
-          <ion-card class="info-item">
-            <p class="info-value">{{article.poids}} g</p>
-            <p class="info-label">Poids</p>
-          </ion-card>
-          <ion-card class="info-item">
-            <p class="info-value">{{article.taille}} cm</p>
-            <p class="info-label">Tailles</p>
-          </ion-card>
-        </div>
-
-        <div class="image-section">
-          <div class="image">
-            <img [src]="article.images[0]">
-          </div>
-        </div>
-
-        <div class="weeks-section">
-          <div *ngFor="let article of Article;">
-            <div class="week-item">
-              <button (click)="selectArticle(article)">
-                {{article.semaine}}
-              </button>
-              {{article.nbreSemaine}}
-            </div>
-          </div>
-        </div>
-
-        <div style="margin-top: -40px;">
-          <div class="couleur">
-            <div class="one">
-              <h5 style="display: block; font-weight: 100; margin-bottom: 8px; line-height: 20px; font-size: 16px; letter-spacing: 0px;">
-                Date de début {{article.dateDebut}}
-              </h5>
-              <p style="display: block; font-weight: 100; margin-bottom: 8px; line-height: 20px; font-size: 16px; letter-spacing: 0px;">
-                {{article.trimestre}} trimestre
-              </p>
-            </div>
-
-            <ion-progress-bar color="light" [value]="progress"></ion-progress-bar>
-
-            <div class="two">
-              <h5 style="display: block; font-weight: 100; margin-bottom: 8px; line-height: 20px; font-size: 16px; letter-spacing: 0px;">
-                Date de l'accouchement prévue le {{article.dateFin}}
-              </h5>
-              <h5 style="display: block; font-weight: 100; margin-bottom: 8px; line-height: 20px; font-size: 16px; letter-spacing: 0px;">
-                {{article.dateFin}}
-              </h5>
-            </div>
-
-            <h1 class="two" style="padding: 7px; font-weight: 100; margin: 20px -80px 20px -80px;">Le bebe</h1>
-            <p class="two" style="padding: 7px; font-weight: 100;">
-              {{article.envent}}.
-            </p>
-          </div>
-        </div>
-      </ng-template>
     </div>
   </div>
 </div>

@@ -4,7 +4,7 @@ export interface babyInfo{
     jours : string;
     semaine : string;
     nbreSemaine : string;
-    images : string[];
+    images : string;
     envent : string;
     trimestre : string;
     dateDebut: string;
